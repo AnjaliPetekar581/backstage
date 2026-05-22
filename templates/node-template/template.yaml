@@ -1,0 +1,37 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+
+metadata:
+  name: nodejs-service-template
+  title: Node.js Service Template
+  description: Creates a Node.js microservice
+
+spec:
+  owner: group:default/team-payments
+  type: service
+
+  parameters:
+    - title: Service Information
+      required:
+        - name
+
+      properties:
+        name:
+          type: string
+          title: Service Name
+          description: Unique service name
+
+  steps:
+    - id: fetch-base
+      name: Fetch Template
+      action: fetch:template
+
+      input:
+        url: ./template
+        values:
+          name: ${{ parameters.name }}
+
+  output:
+    links:
+      - title: Open Component
+        url: /catalog/default/component/${{ parameters.name }}
