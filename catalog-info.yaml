@@ -9,3 +9,6 @@ spec:
   type: service
   lifecycle: production
   owner: group:default/team-payments
+
+  dependsOn:
+    - resource:default/payment-db
